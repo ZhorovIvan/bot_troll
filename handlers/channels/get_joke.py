@@ -7,7 +7,7 @@ from utils.get_joke_from_api import get_joke
 from data import config 
 
 @rate_limit(5, 'joke_ch')
-@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL], regexp='[Аа]некдот')
+@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL], regexp='^[Аа]некдот$')
 async def command_joke(message: types.Message):
     joke_type = '1' if random.randint(0, 1) == 1 else '11'
     joke = await get_joke(joke_type)
@@ -15,7 +15,7 @@ async def command_joke(message: types.Message):
 
 
 @rate_limit(5, 'toast_ch')
-@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL], regexp='[Тт]ост')
+@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL], regexp='^[Тт]ост$')
 async def command_toast(message: types.Message):
     toast_type = '6' if random.randint(0, 1) == 1 else '16'
     toast = await get_joke(toast_type)
@@ -23,7 +23,7 @@ async def command_toast(message: types.Message):
 
 
 @rate_limit(5, 'nope_ch')
-@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='[Нн]ет.*')
+@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='^[Нн]ет$')
 async def command_toast(message: types.Message):
     # Add filter on middleware
     if str(message["from"]["id"]) in config.ADMINS_ID:
