@@ -28,13 +28,13 @@ if __name__ == '__main__':
     from handlers import dp
     from data import config
     
-    start_webhook(
-        dispatcher=dp,
-        webhook_path='',
-        on_startup=on_sturtup,
-        on_shutdown=on_shutdown,
-        skip_updates=True,
-        host=config.HOST,
-        port=config.PORT,
-    )
-    # executor.start_polling(dp, on_startup=on_sturtup)
+    # start_webhook(
+    #     dispatcher=dp,
+    #     webhook_path='',
+    #     on_startup=on_sturtup,
+    #     on_shutdown=on_shutdown,
+    #     skip_updates=True,
+    #     host=config.HOST,
+    #     port=config.PORT,
+    # )
+    executor.start_polling(dp, on_startup=on_sturtup)

@@ -24,7 +24,7 @@ async def command_toast(message: types.Message):
 
 
 @rate_limit(5, 'nope_user')
-@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='[Нн]ет.*')
+@dp.message_handler(chat_type=[ChatType.PRIVATE],  regexp='[Нн]ет.*')
 async def command_toast(message: types.Message):
     # Add filter on middleware
     if str(message["from"]["id"]) in config.ADMINS_ID:
