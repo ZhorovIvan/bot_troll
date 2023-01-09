@@ -17,6 +17,7 @@ async def on_shutdown(dp):
     await on_finish_notify(dp)
 
     from loader import bot, dp
+
     await bot.delete_webhook()
     await dp.storage.close()
     await dp.storage.wait_closed()

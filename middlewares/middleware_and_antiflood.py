@@ -39,7 +39,7 @@ class ThrottlingMiddleware(BaseMiddleware):
             await dispatcher.throttle(key, rate=limit)
         except Throttled as t:
             # Execute action
-            await self.message_throttled(message, t)
+            #await self.message_throttled(message, t)
 
             # Cancel current handler
             raise CancelHandler()
