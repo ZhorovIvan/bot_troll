@@ -30,13 +30,22 @@ async def command_quote(message: types.Message):
     await message.answer(quote)    
 
 
-@rate_limit(200, 'nope_ch')
+@rate_limit(20, 'nope_ch')
 @dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='^[Нн]ет$')
 async def command_toast(message: types.Message):
     # Add filter on middleware
     if str(message["from"]["id"]) in config.ADMINS_ID:
         return
     await message.reply('Пидора ответ')
+
+
+@rate_limit(20, 'yaapkz_ch')
+@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='^[Дд]а$')
+async def command_yaapkz(message: types.Message):
+    # Add filter on middleware
+    if str(message["from"]["id"]) in config.ADMINS_ID:
+        return
+    await message.reply('Ампылда')
 
 
 @rate_limit(200, 'fatality_ch')
