@@ -39,15 +39,6 @@ async def command_toast(message: types.Message):
     await message.reply('Пидора ответ')
 
 
-@rate_limit(20, 'fuckbot_ch')
-@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='^[Пп]ошёл|[Ии]ди) ([Нн]ахуй|[Нн]ахер)$')
-async def command_fuckbot(message: types.Message):
-    # Add filter on middleware
-    if str(message["from"]["id"]) in config.ADMINS_ID:
-        return
-    await message.reply('Нахер твоя жопа хороша ' + message.from_user.full_name)
-
-
 @rate_limit(20, 'yaapkz_ch')
 @dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='^[Дд]а$')
 async def command_yaapkz(message: types.Message):
@@ -86,3 +77,13 @@ async def command_big_mom(message: types.Message):
         return
     await message.reply('Твоя мама такая толстая, что в ресторанах написано: \n'
                         '«Вместительность 300 человек, или твоя мама».')
+
+
+
+@rate_limit(20, 'fuckbot_ch')
+@dp.message_handler(chat_type=[ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],  regexp='^([Пп]ошёл|[Ии]ди) ([Нн]ахуй|[Нн]ахер)$')
+async def command_fuckbot(message: types.Message):
+    # Add filter on middleware
+    if str(message["from"]["id"]) in config.ADMINS_ID:
+        return
+    await message.reply('Нахер твоя жопа хороша ' + message.from_user.full_name)
