@@ -2,6 +2,9 @@ async def on_sturtup(dp):
     from loader import bot, config
     await bot.set_webhook(config.WEBHOOKURL)
 
+    import filters
+    filters.setup(dp)
+
     import middlewares
     middlewares.setup(dp)
 
@@ -16,8 +19,9 @@ async def on_shutdown(dp):
     from utils.notify_admins import on_finish_notify
     await on_finish_notify(dp)
 
-    from loader import bot, dp
+    from loader import bot, dp, db_mysql
 
+    await db_mysql.close()
     await bot.delete_webhook()
     await dp.storage.close()
     await dp.storage.wait_closed()

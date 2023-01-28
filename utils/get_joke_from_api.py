@@ -2,6 +2,7 @@ import aiohttp
 import json
 from data import config
 
+
 async def get_joke(number: str):
     '''
     1 - Анекдот;
